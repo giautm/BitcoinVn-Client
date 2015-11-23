@@ -1,0 +1,25 @@
+{
+  "name": "bitcointvn-client",
+  "version": "1.0.0",
+  "description": "Javascript module for interacting with Bitcoin Vietnam API http://www.bitcoinvietnam.com.vn",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giautm/BitcoinVn-Client.git"
+  },
+  "keywords": [
+    "bitcoint",
+    "bitcoinvietnam",
+    "client"
+  ],
+  "author": "Giau Tran Minh <giau.tmg@gmail.com> (https://fb.com/giau.tm)",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.0.5",
+    "crypto": "0.0.3",
+    "request-promise": "^1.0.2"
+  }
+}
