@@ -24,7 +24,7 @@ class BitcoinVnClient {
      * }).then(console.log);
      */
     query(options) {
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject) => {
             try {
                 options.nonce = Date.now() / 1000 | 0;
 
@@ -49,7 +49,7 @@ class BitcoinVnClient {
             } catch (exception) {
                 reject(exception);
             }
-        }.bind(this)).then(request.post).then(function (rep) {
+        }).then(request.post).then(function (rep) {
             if (rep.error) {
                 return Promise.reject(rep.error);
             }
