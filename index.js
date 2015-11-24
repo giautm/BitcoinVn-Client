@@ -35,21 +35,21 @@ class BitcoinVnClient {
 
                 resolve({
                     uri: this.api_url,
-                    method: 'POST',
                     headers: {
                         'X-BITCOINVIETNAM-KEY': this.client_key,
                         'X-BITCOINVIETNAM-PARAMS': b64Params,
                         'X-BITCOINVIETNAM-SIGNATURE': signature
                     },
-                    form: options
+                    form: options,
+					transform: function (body) {
+						/* Remove UTF-8 BOM and parse to JSON. */
+						return JSON.parse(body.replace('\uFEFF', ''));
+					}
                 });
             } catch (exception) {
                 reject(exception);
             }
-        }.bind(this)).then(request).then(function (jsonString) {
-            /* Remove UTF-8 BOM. */
-            let rep = JSON.parse(jsonString.replace('\uFEFF',''));
-
+        }.bind(this)).then(request.post).then(function (rep) {
             if (rep.error) {
                 return Promise.reject(rep.error);
             }
