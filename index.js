@@ -47,9 +47,8 @@ class BitcoinVnClient {
                 reject(exception);
             }
         }.bind(this)).then(request).then(function (jsonString) {
-            /* Loại bỏ khoảng trắng thừa và parse chuỗi JSON. */
-            // TODO: Bug - Nếu chuỗi giá trị có nhiều khoảng trắng thì cũng sẽ bị sửa đổi.
-            let rep = JSON.parse(jsonString.replace(/\s+/g, ' '));
+            /* Remove UTF-8 BOM. */
+            let rep = JSON.parse(jsonString.replace('\uFEFF',''));
 
             if (rep.error) {
                 return Promise.reject(rep.error);
